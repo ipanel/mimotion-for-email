@@ -244,19 +244,16 @@ def get_app_token(login_token):
 
 # 推送server
 def push_wx(desp=""):
-    if sckey == 'NO':
-        print(sckey == "NO")
-        return
-    else:
-        server_url = f"http://www.pushplus.plus/send?token={PUSH_PLUS_TOKEN}"
-        params = {
-            "title": '【✍小米运动步数修改✍】',
-            "content": desp,
-            "template": 'html'
-        }
+    server_url = f"http://www.pushplus.plus/send?token={PUSH_PLUS_TOKEN}"
+    params = {
+        "title": '【✍小米运动步数修改✍】',
+        "content": desp,
+        "template": 'html'
+    }
 
-        response = requests.get(server_url, params=params).text
-        print(response)
+    response = requests.get(server_url, params=params).text
+    print(response)
+
         
 def main_handler(event, context):
     getBeijinTime()
