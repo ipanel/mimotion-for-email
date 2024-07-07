@@ -84,8 +84,8 @@ def getBeijinTime():
         print(min_ratio)
         print(max_ratio)
         max_ratio = int(hour)
-        min_1 = 3300 * min_ratio
-        max_1 = 3300 * max_ratio
+        min_1 = 2300 * min_ratio
+        max_1 = 2300 * max_ratio
         min_1 = int(K * min_1)
         max_1 = int(K * max_1)
         print("天气系数是")
@@ -244,16 +244,18 @@ def get_app_token(login_token):
 
 # 推送server
 def push_wx(desp=""):
-    server_url = f"http://www.pushplus.plus/send?token={PUSH_PLUS_TOKEN}"
-    params = {
-        "title": '【✍小米运动步数修改✍】',
-        "content": desp,
-        "template": 'html'
-    }
+    if sckey == 'NO':
+        print(sckey == "NO")
+        return
+    else:
+        server_url = f"https://sctapi.ftqq.com/{sckey}.send"
+        params = {
+            "text": '【✍小米运动步数修改✍】',
+            "desp": desp
+        }
 
-    response = requests.get(server_url, params=params).text
-    print(response)
-
+        response = requests.get(server_url, params=params).text
+        print(response)
         
 def main_handler(event, context):
     getBeijinTime()
