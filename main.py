@@ -244,28 +244,25 @@ def get_app_token(login_token):
 
 # 推送server
 def push_wx(desp=""):
-    if sckey == 'NO':
-        print(sckey == "NO")
-        return
-    else:
-        requestUrl = f"http://www.pushplus.plus/send"
-        data = {
-            "token": PUSH_PLUS_TOKEN,
-            "title": '【✍小米运动步数修改✍】',
-            "content": desp,
-            "template": "html",
-            "channel": "wechat"
-        }
+    requestUrl = f"http://www.pushplus.plus/send"
+    data = {
+        "token": PUSH_PLUS_TOKEN,
+        "title": '【✍小米运动步数修改✍】',
+        "content": desp,
+        "template": "html",
+        "channel": "wechat"
+    }
 
-        try:
-            response = requests.post(requestUrl, data=data)
-            if response.status_code == 200:
-                json_res = response.json()
-                print(f"pushplus推送完毕：{json_res['code']}-{json_res['msg']}")
-            else:
-                print("pushplus推送失败")
-        except Exception as e:
-            print(f"pushplus推送异常：{e}")
+    try:
+        response = requests.post(requestUrl, data=data)
+        if response.status_code == 200:
+            json_res = response.json()
+            print(f"pushplus推送完毕：{json_res['code']}-{json_res['msg']}")
+        else:
+            print("pushplus推送失败")
+    except Exception as e:
+        print(f"pushplus推送异常：{e}")
+
 
 def main_handler(event, context):
     getBeijinTime()
