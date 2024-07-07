@@ -243,7 +243,7 @@ def get_app_token(login_token):
     return app_token
 
 # pushplus消息推送
-def push_plus(title, content):
+def push_wx(title, content):
     requestUrl = f"http://www.pushplus.plus/send"
     data = {
         "token": PUSH_PLUS_TOKEN,
